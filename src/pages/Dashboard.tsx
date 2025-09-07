@@ -37,10 +37,10 @@ const Dashboard = () => {
       <div className="flex items-center justify-between">
         <div className="space-y-2">
           <h1 className="text-4xl font-bold tracking-tight bg-gradient-primary bg-clip-text text-transparent">
-            SensorHub Dashboard
+            AgriSense Dashboard
           </h1>
           <p className="text-lg text-muted-foreground">
-            Monitor your IoT sensors in real-time with automatic data refresh
+            Monitor your fields in real-time with smart agriculture IoT sensors
           </p>
         </div>
         

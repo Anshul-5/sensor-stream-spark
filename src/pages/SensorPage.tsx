@@ -57,7 +57,7 @@ const SensorPage = () => {
       {/* Header */}
       <div className="space-y-2">
         <div className="flex items-center justify-between">
-          <h1 className="text-3xl font-bold tracking-tight">Temperature Sensor Dashboard</h1>
+          <h1 className="text-3xl font-bold tracking-tight">Soil Conditions Dashboard</h1>
           <div className="flex items-center space-x-2">
             {isFetching && (
               <div className="flex items-center space-x-2 text-sm text-muted-foreground">
@@ -74,7 +74,7 @@ const SensorPage = () => {
           </div>
         </div>
         <p className="text-muted-foreground">
-          Real-time monitoring of temperature sensor data from Firebase
+          Real-time monitoring of soil conditions and temperature from your fields
         </p>
         
         {apiMessage && (
@@ -89,7 +89,7 @@ const SensorPage = () => {
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
         <Card className="border-card-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">Current Temperature</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted-foreground">Soil Temperature</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-primary">

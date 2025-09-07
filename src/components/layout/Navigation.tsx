@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Activity, Gauge, RefreshCw } from 'lucide-react';
+import { Sprout, Droplets, RefreshCw, Thermometer } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface NavigationProps {
@@ -14,13 +14,13 @@ const Navigation = ({ onRefresh, isRefreshing }: NavigationProps) => {
   const navItems = [
     {
       path: '/sensor',
-      label: 'Temperature Sensor',
-      icon: Gauge,
+      label: 'Soil Monitoring',
+      icon: Thermometer,
     },
     {
       path: '/sensor-1',
-      label: 'Humidity Sensor',
-      icon: Activity,
+      label: 'Crop Health',
+      icon: Droplets,
     },
   ];
 
@@ -30,10 +30,10 @@ const Navigation = ({ onRefresh, isRefreshing }: NavigationProps) => {
         <div className="flex items-center space-x-6">
           <Link to="/" className="flex items-center space-x-2">
             <div className="h-8 w-8 rounded-lg bg-gradient-primary flex items-center justify-center">
-              <Activity className="h-4 w-4 text-primary-foreground" />
+              <Sprout className="h-4 w-4 text-primary-foreground" />
             </div>
             <span className="text-xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-              SensorHub
+              AgriSense
             </span>
           </Link>
           

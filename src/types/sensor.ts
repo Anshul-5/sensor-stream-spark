@@ -6,12 +6,17 @@ export interface SensorReading {
   status: 'online' | 'offline' | 'warning';
   location?: string;
   description?: string;
+  // Agriculture-specific fields
+  fieldSection?: string;
+  cropType?: string;
+  soilType?: string;
+  weatherCondition?: string;
 }
 
 export interface SensorData {
   sensorId: string;
   name: string;
-  type: string;
+  type: 'soil' | 'environmental' | 'crop' | 'irrigation' | 'weather';
   readings: SensorReading[];
   lastUpdated: string;
   isOnline: boolean;
@@ -20,6 +25,14 @@ export interface SensorData {
     maxValue?: number;
     threshold?: number;
     calibrationDate?: string;
+    // Agriculture-specific metadata
+    fieldId?: string;
+    cropType?: string;
+    soilType?: string;
+    plantingDate?: string;
+    harvestDate?: string;
+    irrigationSchedule?: string;
+    fertilizerLastApplied?: string;
   };
 }
 

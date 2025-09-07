@@ -4,49 +4,71 @@ import { SensorData, ApiResponse } from '@/types/sensor';
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
 
 // Mock data for testing when backend is not available
-const mockSensorData: SensorData = {
-  sensorId: 'sensor-001',
-  name: 'Temperature Sensor',
-  type: 'temperature',
+const mockSoilData: SensorData = {
+  sensorId: 'field-soil-001',
+  name: 'Soil Conditions Monitor',
+  type: 'soil',
   isOnline: true,
   lastUpdated: new Date().toISOString(),
   readings: Array.from({ length: 20 }, (_, i) => ({
     id: `reading-${i}`,
     timestamp: new Date(Date.now() - (19 - i) * 5 * 60 * 1000).toISOString(),
-    value: 22 + Math.random() * 8 + Math.sin(i * 0.5) * 3,
+    value: 18 + Math.random() * 12 + Math.sin(i * 0.5) * 3,
     unit: '°C',
     status: Math.random() > 0.1 ? 'online' : 'warning' as const,
-    location: 'Building A - Room 101',
-    description: 'Primary temperature monitoring'
+    location: 'Field Section A',
+    description: 'Soil temperature monitoring',
+    fieldSection: 'A-01',
+    cropType: 'Wheat',
+    soilType: 'Clay Loam',
+    weatherCondition: 'Partly Cloudy'
   })),
   metadata: {
-    minValue: 18,
+    minValue: 15,
     maxValue: 35,
     threshold: 30,
-    calibrationDate: '2024-01-15'
+    calibrationDate: '2024-01-15',
+    fieldId: 'FIELD-001',
+    cropType: 'Winter Wheat',
+    soilType: 'Clay Loam',
+    plantingDate: '2023-10-15',
+    harvestDate: '2024-07-20',
+    irrigationSchedule: 'Daily at 6 AM',
+    fertilizerLastApplied: '2024-01-10'
   }
 };
 
-const mockSensor1Data: SensorData = {
-  sensorId: 'sensor-002',
-  name: 'Humidity Sensor',
-  type: 'humidity',
+const mockCropData: SensorData = {
+  sensorId: 'field-crop-001',
+  name: 'Crop Health Monitor',
+  type: 'environmental',
   isOnline: true,
   lastUpdated: new Date().toISOString(),
   readings: Array.from({ length: 20 }, (_, i) => ({
     id: `reading-${i}`,
     timestamp: new Date(Date.now() - (19 - i) * 5 * 60 * 1000).toISOString(),
-    value: 45 + Math.random() * 20 + Math.cos(i * 0.3) * 5,
+    value: 45 + Math.random() * 25 + Math.cos(i * 0.3) * 8,
     unit: '%',
     status: Math.random() > 0.05 ? 'online' : 'warning' as const,
-    location: 'Building A - Room 101',
-    description: 'Environmental humidity monitoring'
+    location: 'Field Section B',
+    description: 'Environmental humidity and leaf wetness monitoring',
+    fieldSection: 'B-02',
+    cropType: 'Corn',
+    soilType: 'Silt Loam',
+    weatherCondition: 'Sunny'
   })),
   metadata: {
     minValue: 30,
     maxValue: 80,
     threshold: 70,
-    calibrationDate: '2024-01-15'
+    calibrationDate: '2024-01-15',
+    fieldId: 'FIELD-002',
+    cropType: 'Sweet Corn',
+    soilType: 'Silt Loam',
+    plantingDate: '2024-04-20',
+    harvestDate: '2024-08-15',
+    irrigationSchedule: 'Every 2 days at 5 AM',
+    fertilizerLastApplied: '2024-05-01'
   }
 };
 
@@ -78,7 +100,7 @@ async function apiRequest<T>(endpoint: string): Promise<ApiResponse<T>> {
     console.warn(`API request failed for ${endpoint}, using mock data:`, error);
     
     // Return mock data based on endpoint
-    const mockData = endpoint.includes('Sensor_1') ? mockSensor1Data : mockSensorData;
+    const mockData = endpoint.includes('Sensor_1') ? mockCropData : mockSoilData;
     
     return {
       data: mockData as T,
@@ -103,4 +125,4 @@ export const sensorApi = {
 };
 
 // Export mock data for testing
-export { mockSensorData, mockSensor1Data };
+export { mockSoilData, mockCropData };

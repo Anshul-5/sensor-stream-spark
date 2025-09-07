@@ -49,6 +49,14 @@ export default {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
         },
+        water: {
+          DEFAULT: "hsl(var(--water))",
+          foreground: "hsl(var(--water-foreground))",
+        },
+        sky: {
+          DEFAULT: "hsl(var(--sky))",
+          foreground: "hsl(var(--sky-foreground))",
+        },
         muted: {
           DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))",
@@ -67,7 +75,8 @@ export default {
       backgroundImage: {
         "gradient-primary": "var(--gradient-primary)",
         "gradient-secondary": "var(--gradient-secondary)",
-        "gradient-surface": "var(--gradient-surface)",
+        "gradient-field": "var(--gradient-field)",
+        "gradient-earth": "var(--gradient-earth)",
         "gradient-mesh": "var(--gradient-mesh)",
       },
       boxShadow: {
