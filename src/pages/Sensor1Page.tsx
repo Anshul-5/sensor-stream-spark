@@ -4,7 +4,7 @@ import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
 import SensorCard from '@/components/sensors/SensorCard';
 import SensorChart from '@/components/sensors/SensorChart';
-import { AlertCircle, Activity, Droplets, Clock } from 'lucide-react';
+import { AlertCircle, Activity, Droplets, Clock, Wheat, Sprout } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 
 const Sensor1Page = () => {
@@ -57,7 +57,10 @@ const Sensor1Page = () => {
       {/* Header */}
       <div className="space-y-2">
         <div className="flex items-center justify-between">
-          <h1 className="text-3xl font-bold tracking-tight">Humidity Sensor Dashboard</h1>
+          <h1 className="text-3xl font-bold tracking-tight flex items-center space-x-3">
+            <Wheat className="h-8 w-8 text-success" />
+            <span>Crop Health Monitor</span>
+          </h1>
           <div className="flex items-center space-x-2">
             {isFetching && (
               <div className="flex items-center space-x-2 text-sm text-muted-foreground">
@@ -74,7 +77,7 @@ const Sensor1Page = () => {
           </div>
         </div>
         <p className="text-muted-foreground">
-          Real-time monitoring of humidity sensor data from Firebase
+          Monitor crop health parameters including humidity, leaf moisture, and plant vitals for optimal farming decisions
         </p>
         
         {apiMessage && (
@@ -89,59 +92,71 @@ const Sensor1Page = () => {
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
         <Card className="border-card-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">Current Humidity</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted-foreground flex items-center space-x-2">
+              <Droplets className="h-4 w-4 text-primary" />
+              <span>Plant Moisture</span>
+            </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-secondary">
+            <div className="text-2xl font-bold text-success">
               {latestReading?.value.toFixed(1)}%
             </div>
             <p className="text-xs text-muted-foreground mt-1">
-              {latestReading?.status === 'online' ? 'Normal range' : 'Check required'}
+              {latestReading?.status === 'online' ? 'Optimal conditions' : 'Irrigation needed'}
             </p>
           </CardContent>
         </Card>
 
         <Card className="border-card-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">Average (24h)</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted-foreground flex items-center space-x-2">
+              <Activity className="h-4 w-4 text-accent" />
+              <span>Daily Average</span>
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-accent">
               {averageValue.toFixed(1)}%
             </div>
             <p className="text-xs text-muted-foreground mt-1">
-              Based on {sensorData.readings.length} readings
+              Based on {sensorData.readings.length} field samples
             </p>
           </CardContent>
         </Card>
 
         <Card className="border-card-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">Status</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted-foreground flex items-center space-x-2">
+              <Sprout className="h-4 w-4 text-primary" />
+              <span>System Status</span>
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <div className={`text-2xl font-bold ${
               sensorData.isOnline ? 'text-success' : 'text-destructive'
             }`}>
-              {sensorData.isOnline ? 'Online' : 'Offline'}
+              {sensorData.isOnline ? 'Active' : 'Maintenance'}
             </div>
             <p className="text-xs text-muted-foreground mt-1">
-              Last update: {new Date(sensorData.lastUpdated).toLocaleTimeString()}
+              Last sync: {new Date(sensorData.lastUpdated).toLocaleTimeString()}
             </p>
           </CardContent>
         </Card>
 
         <Card className="border-card-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">Data Points</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted-foreground flex items-center space-x-2">
+              <Activity className="h-4 w-4 text-primary" />
+              <span>Field Samples</span>
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-primary flex items-center space-x-2">
-              <Droplets className="h-6 w-6" />
+              <Wheat className="h-6 w-6" />
               <span>{sensorData.readings.length}</span>
             </div>
             <p className="text-xs text-muted-foreground mt-1">
-              Collected readings
+              Crop health measurements
             </p>
           </CardContent>
         </Card>
@@ -158,8 +173,8 @@ const Sensor1Page = () => {
         <div className="lg:col-span-2">
           <SensorChart 
             readings={sensorData.readings}
-            title="Humidity Trends"
-            color="hsl(var(--secondary))"
+            title="Crop Health Trends"
+            color="hsl(var(--success))"
             type="area"
           />
         </div>
@@ -168,7 +183,10 @@ const Sensor1Page = () => {
       {/* Recent Readings Table */}
       <Card>
         <CardHeader>
-          <CardTitle>Recent Readings</CardTitle>
+          <CardTitle className="flex items-center space-x-2">
+            <Activity className="h-5 w-5 text-success" />
+            <span>Recent Field Measurements</span>
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
@@ -176,9 +194,9 @@ const Sensor1Page = () => {
               <thead>
                 <tr className="border-b border-border">
                   <th className="text-left py-2 text-muted-foreground">Time</th>
-                  <th className="text-left py-2 text-muted-foreground">Value</th>
-                  <th className="text-left py-2 text-muted-foreground">Status</th>
-                  <th className="text-left py-2 text-muted-foreground">Location</th>
+                  <th className="text-left py-2 text-muted-foreground">Moisture Level</th>
+                  <th className="text-left py-2 text-muted-foreground">Crop Status</th>
+                  <th className="text-left py-2 text-muted-foreground">Field Location</th>
                 </tr>
               </thead>
               <tbody>

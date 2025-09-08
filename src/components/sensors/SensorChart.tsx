@@ -1,7 +1,7 @@
 import { SensorReading } from '@/types/sensor';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Area, AreaChart } from 'recharts';
-import { TrendingUp } from 'lucide-react';
+import { TrendingUp, BarChart3 } from 'lucide-react';
 import { format } from 'date-fns';
 
 interface SensorChartProps {
@@ -59,7 +59,7 @@ const SensorChart = ({
       <CardHeader className="pb-3">
         <div className="flex items-center justify-between">
           <CardTitle className="text-lg font-semibold flex items-center space-x-2">
-            <TrendingUp className="h-5 w-5 text-primary" />
+            <BarChart3 className="h-5 w-5 text-success" />
             <span>{title}</span>
           </CardTitle>
           

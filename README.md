@@ -1,87 +1,124 @@
-# SensorHub - IoT Dashboard
+# 🌱 AgriSense - Smart Agriculture Monitoring PWA
 
-A modern, real-time IoT sensor monitoring dashboard built with React.js, TypeScript, and Tailwind CSS. This application integrates with a FastAPI backend to display sensor data from Firebase in beautiful, responsive charts and cards.
+A **Progressive Web App (PWA)** built with **React.js** and **Tailwind CSS** for real-time agricultural field monitoring. Track soil conditions, crop health, and environmental parameters to make data-driven farming decisions.
 
-![SensorHub Dashboard](https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=800&h=400&fit=crop)
+![AgriSense Dashboard](https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&h=400&fit=crop)
 
-## 🚀 Features
+## ✨ Features
 
-- **Real-time Monitoring**: Automatic data refresh every 10 seconds with manual refresh capability
-- **Responsive Design**: Fully responsive layout that works on desktop, tablet, and mobile
-- **Interactive Charts**: Beautiful data visualization using Recharts with trend analysis
-- **Multiple Sensors**: Support for temperature and humidity sensor monitoring
-- **Error Handling**: Comprehensive error handling with loading states and fallback UI
-- **Mock Data**: Built-in mock data for testing without backend connectivity
-- **Modern UI**: Dark theme with glassmorphism effects and smooth animations
-- **Firebase Integration**: Seamless connection to FastAPI backend with Firebase
+### 🚀 Progressive Web App (PWA)
+- **Offline Access**: Works without internet connectivity using service worker caching
+- **Mobile Installation**: Install directly on mobile devices like a native app
+- **Background Sync**: Automatic data synchronization when connection is restored
+- **Push Notifications**: Firebase Cloud Messaging integration ready (placeholder implemented)
+
+### 🌾 Agriculture-Focused Dashboard
+- **Soil Monitoring**: Real-time soil moisture, temperature, and pH tracking
+- **Crop Health**: Plant vitals, leaf moisture, and growth stage monitoring  
+- **Field Management**: Multi-section field tracking with crop type identification
+- **Environmental Data**: Weather conditions, humidity, and irrigation scheduling
+
+### 📊 Data Visualization
+- **Interactive Charts**: Real-time trend analysis using Recharts
+- **Field Statistics**: Min/max/average calculations with trend indicators
+- **Status Monitoring**: Visual alerts for irrigation needs and crop conditions
+- **Historical Data**: 24-hour data retention with automatic refresh every 10 seconds
+
+### 🎨 Modern UI/UX
+- **Agriculture Theme**: Green/brown/yellow color palette inspired by farming
+- **Responsive Design**: Mobile-first approach optimized for field use
+- **Dark/Light Mode**: Adaptive themes for various lighting conditions
+- **Touch-Friendly**: Large buttons and intuitive navigation for outdoor use
 
 ## 🛠️ Technology Stack
 
-- **Frontend**: React.js 18 with TypeScript
-- **Styling**: Tailwind CSS with custom design system
+- **Frontend**: React 18, TypeScript, Tailwind CSS
 - **Charts**: Recharts for data visualization
-- **State Management**: TanStack Query (React Query) for server state
+- **State Management**: TanStack Query for server state
 - **Routing**: React Router v6
-- **HTTP Client**: Native Fetch API with error handling
-- **UI Components**: Custom components with Radix UI primitives
-- **Build Tool**: Vite
-- **Package Manager**: npm/yarn
+- **PWA**: Service Worker, Web App Manifest
+- **Icons**: Lucide React (agriculture-themed icons)
+- **Backend Integration**: FastAPI endpoints with Firebase data
+- **Notifications**: Firebase Cloud Messaging (FCM) ready
 
-## 📋 Prerequisites
+## 📡 API Integration
 
+### Backend Endpoints
+- `GET /Sensor`: Retrieves soil monitoring data from Firebase `/sensors` node
+- `GET /Sensor_1`: Retrieves crop health data from Firebase `/sensors_1` node
+
+### Mock Data
+Includes comprehensive mock agriculture data for development:
+- Soil moisture, temperature, and pH sensors
+- Crop health metrics with field section tracking
+- Weather condition integration
+- Irrigation scheduling data
+
+## 🚀 Quick Start
+
+### Prerequisites
 - Node.js 16+ and npm/yarn
-- FastAPI backend running (optional - mock data available)
-- Modern web browser with ES6+ support
+- FastAPI backend running (optional - mock data included)
+- Modern web browser with PWA support
 
-## 🔧 Installation & Setup
+### Installation
 
-### 1. Clone the Repository
+1. **Clone and Install**
+   ```bash
+   git clone <repository-url>
+   cd agrisense-frontend
+   npm install
+   ```
 
+2. **Environment Setup**
+   ```bash
+   cp .env.example .env
+   # Edit .env with your FastAPI backend URL
+   ```
+
+3. **Development Server**
+   ```bash
+   npm run dev
+   # Access at http://localhost:5173
+   ```
+
+4. **PWA Testing**
+   ```bash
+   npm run build
+   npm run preview
+   # Test PWA features in production mode
+   ```
+
+### 📱 PWA Installation
+1. Open the app in Chrome/Edge on mobile
+2. Tap "Add to Home Screen" when prompted
+3. The app will install like a native mobile app
+4. Works offline after initial installation
+
+## 🔧 Configuration
+
+### Environment Variables (.env)
 ```bash
-git clone <your-repository-url>
-cd sensorhub-frontend
-```
-
-### 2. Install Dependencies
-
-```bash
-npm install
-# or
-yarn install
-```
-
-### 3. Environment Configuration
-
-Create a `.env` file in the root directory:
-
-```env
-# API Configuration
+# Backend API Configuration
 VITE_API_BASE_URL=http://localhost:8000
 
-# Optional: Enable development features
-VITE_DEV_MODE=true
+# Firebase Configuration (for FCM - optional)
+VITE_FIREBASE_PROJECT_ID=your-project-id
+VITE_FIREBASE_API_KEY=your-api-key
+VITE_FIREBASE_MESSAGING_SENDER_ID=your-sender-id
+VITE_FIREBASE_APP_ID=your-app-id
+
+# App Configuration
+VITE_APP_NAME=AgriSense
+VITE_APP_VERSION=1.0.0
 ```
 
-**Environment Variables:**
-- `VITE_API_BASE_URL`: Your FastAPI backend URL (defaults to `http://localhost:8000`)
-
-### 4. Start Development Server
-
-```bash
-npm run dev
-# or
-yarn dev
-```
-
-The application will be available at `http://localhost:8080`
-
-### 5. Build for Production
-
-```bash
-npm run build
-# or
-yarn build
-```
+### PWA Manifest Configuration
+The `public/manifest.json` includes:
+- Agriculture-themed branding and icons
+- Standalone display mode for native app feel
+- Theme colors matching the agriculture design system
+- Offline capability declarations
 
 ## 📁 Project Structure
 
@@ -94,226 +131,268 @@ src/
 ├── hooks/             # Custom React hooks
 │   └── useSensorData.ts # Sensor data fetching hook
 ├── pages/             # Page components
-│   ├── Dashboard.tsx   # Main dashboard
-│   ├── SensorPage.tsx  # Temperature sensor page
-│   └── Sensor1Page.tsx # Humidity sensor page
+│   ├── Dashboard.tsx   # Main agriculture dashboard
+│   ├── SensorPage.tsx  # Soil monitoring page
+│   └── Sensor1Page.tsx # Crop health page
 ├── services/          # API services
-│   └── api.ts         # API client with mock data
+│   └── api.ts         # API client with agriculture mock data
 ├── types/             # TypeScript type definitions
-│   └── sensor.ts      # Sensor data types
-├── lib/               # Utility functions
+│   └── sensor.ts      # Agriculture sensor data types
+├── utils/             # Utility functions
+│   ├── pwa.ts         # PWA service worker utilities
+│   └── fcm.ts         # Firebase Cloud Messaging setup
+├── lib/               # Helper functions
 ├── App.tsx           # Main application component
-├── main.tsx          # Application entry point
-└── index.css         # Global styles and design system
+├── main.tsx          # Application entry point with PWA init
+└── index.css         # Agriculture design system and styles
 ```
+
+## 🌐 Deployment
+
+### Build for Production
+```bash
+npm run build
+# Creates optimized build in `dist/` directory
+```
+
+### Deployment Platforms
+
+#### Vercel (Recommended)
+```bash
+# Install Vercel CLI
+npm i -g vercel
+
+# Deploy
+vercel --prod
+
+# Configure environment variables in Vercel dashboard
+```
+
+#### Netlify
+```bash
+# Build command: npm run build
+# Publish directory: dist
+# Add environment variables in Netlify dashboard
+```
+
+#### PWA-Specific Deployment Notes
+- Ensure HTTPS is enabled (required for PWA features)
+- Service worker will cache resources automatically
+- Test offline functionality after deployment
+- Configure proper headers for manifest.json
+
+### 🔔 Firebase Cloud Messaging Setup
+
+The app includes FCM integration placeholders. To enable push notifications:
+
+1. **Firebase Project Setup**
+   ```bash
+   # Create Firebase project at https://console.firebase.google.com
+   # Enable Cloud Messaging in project settings
+   ```
+
+2. **Configuration**
+   ```typescript
+   // Update src/utils/fcm.ts with your Firebase config
+   const firebaseConfig = {
+     apiKey: "your-api-key",
+     authDomain: "your-project.firebaseapp.com",
+     projectId: "your-project-id",
+     storageBucket: "your-project.appspot.com",
+     messagingSenderId: "123456789",
+     appId: "your-app-id"
+   };
+   ```
+
+3. **Backend Integration**
+   ```python
+   # In your FastAPI backend, add FCM admin SDK
+   # Send notifications for critical agricultural alerts:
+   # - Soil moisture below threshold
+   # - Temperature extremes
+   # - Irrigation system failures
+   # - Pest detection alerts
+   ```
+
+## 🧪 Testing
+
+### Development Testing
+```bash
+# Run with mock data (no backend required)
+npm run dev
+
+# Test PWA features
+npm run build && npm run preview
+```
+
+### Offline Testing
+1. Load the app in Chrome
+2. Open DevTools > Application > Service Workers
+3. Check "Offline" checkbox
+4. Refresh the page to test offline functionality
+5. Data from last session should be available
+
+### PWA Testing Checklist
+- [ ] Installable on mobile devices
+- [ ] Works offline after initial load
+- [ ] Shows cached data when offline
+- [ ] Displays proper agriculture branding
+- [ ] Touch-friendly interface on mobile
+- [ ] Service worker updates automatically
+
+## 🌾 Agriculture Features
+
+### Sensor Types Supported
+- **Soil Sensors**: Moisture, temperature, pH, nutrient levels
+- **Environmental**: Air temperature, humidity, light intensity
+- **Crop Health**: Leaf wetness, growth stage indicators
+- **Irrigation**: Water flow, pressure, scheduling
+
+### Field Management
+- Multi-section field tracking
+- Crop type identification and monitoring
+- Soil type classification
+- Weather condition integration
+- Irrigation scheduling and alerts
+
+### Data Insights
+- Real-time trend analysis
+- Historical data comparison
+- Threshold-based alerting
+- Predictive analytics ready
+- Export capabilities for reporting
 
 ## 🔌 Backend Integration
 
 ### FastAPI Endpoints
 
-The application expects these endpoints from your FastAPI backend:
+The application expects these agriculture-focused endpoints:
 
 ```python
-# Temperature sensor data
+# Soil monitoring data
 GET /Sensor
 Response: {
-  "sensorId": "string",
-  "name": "string",
-  "type": "string",
-  "readings": [...],
-  "lastUpdated": "ISO string",
-  "isOnline": boolean,
-  "metadata": {...}
+  "sensorId": "soil_001",
+  "name": "Soil Monitor - Field A",
+  "type": "soil",
+  "readings": [
+    {
+      "id": "reading_001",
+      "timestamp": "2024-01-15T10:30:00Z",
+      "value": 65.2,
+      "unit": "%",
+      "status": "online",
+      "location": "Field A - Section 1",
+      "fieldSection": "A1",
+      "cropType": "Wheat",
+      "soilType": "Clay Loam",
+      "weatherCondition": "Sunny"
+    }
+  ],
+  "lastUpdated": "2024-01-15T10:30:00Z",
+  "isOnline": true,
+  "metadata": {
+    "minValue": 20,
+    "maxValue": 80,
+    "threshold": 40,
+    "fieldId": "field_a",
+    "cropType": "Wheat",
+    "soilType": "Clay Loam",
+    "plantingDate": "2024-01-01",
+    "irrigationSchedule": "Every 2 days"
+  }
 }
 
-# Humidity sensor data  
+# Crop health data
 GET /Sensor_1
 Response: {
-  "sensorId": "string", 
-  "name": "string",
-  "type": "string", 
+  "sensorId": "crop_001",
+  "name": "Crop Health Monitor",
+  "type": "crop",
   "readings": [...],
-  "lastUpdated": "ISO string",
-  "isOnline": boolean,
+  "lastUpdated": "2024-01-15T10:30:00Z",
+  "isOnline": true,
   "metadata": {...}
 }
 ```
 
 ### CORS Configuration
 
-Ensure your FastAPI backend has CORS configured:
-
 ```python
 from fastapi.middleware.cors import CORSMiddleware
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:8080"],  # Add your frontend URL
+    allow_origins=["https://your-agrisense-app.vercel.app"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 ```
 
-### Mock Data
-
-The application includes comprehensive mock data that automatically activates when the backend is unavailable. This allows for:
-- Frontend development without backend dependency
-- Testing and demonstration purposes
-- Offline functionality
-
 ## 🎨 Customization
 
-### Design System
+### Agriculture Design System
 
-The application uses a custom design system defined in `src/index.css`:
+The application uses an agriculture-themed design system:
 
 ```css
 :root {
-  /* Primary colors - customize for your brand */
-  --primary: 189 100% 50%;        /* Cyan */
-  --secondary: 217 91% 60%;       /* Blue */
-  --accent: 270 95% 75%;          /* Purple */
-  
-  /* Status colors */
-  --success: 142 76% 36%;         /* Green */
-  --warning: 45 93% 58%;          /* Orange */
-  --destructive: 0 84% 60%;       /* Red */
+  /* Agriculture color palette */
+  --primary: 120 60% 50%;        /* Forest Green */
+  --secondary: 39 100% 50%;      /* Golden Yellow */
+  --accent: 15 75% 45%;          /* Earthy Brown */
+  --success: 142 76% 36%;        /* Growth Green */
+  --warning: 45 93% 58%;         /* Harvest Orange */
+  --destructive: 0 84% 60%;      /* Alert Red */
 }
 ```
 
-### Adding New Sensors
+### Adding New Agricultural Sensors
 
 1. **Update Types**: Add new sensor types in `src/types/sensor.ts`
 2. **Create API Endpoint**: Add new endpoint in `src/services/api.ts`
-3. **Add Mock Data**: Include mock data for testing
-4. **Create Page Component**: Build sensor-specific page
-5. **Update Navigation**: Add route in `src/components/layout/Navigation.tsx`
-6. **Update Routing**: Add route in `src/App.tsx`
-
-### Custom Charts
-
-Extend `src/components/sensors/SensorChart.tsx` with new chart types:
-
-```tsx
-// Add new chart type
-type ChartType = 'line' | 'area' | 'bar' | 'gauge';
-
-// Implement in component
-{type === 'bar' && (
-  <BarChart data={chartData}>
-    {/* Chart configuration */}
-  </BarChart>
-)}
-```
-
-## 🚀 Deployment
-
-### Vercel (Recommended)
-
-1. Connect your GitHub repository to Vercel
-2. Set environment variables in Vercel dashboard
-3. Deploy automatically on push to main branch
-
-```bash
-# Install Vercel CLI
-npm i -g vercel
-
-# Deploy
-vercel
-```
-
-### Netlify
-
-1. Build the project: `npm run build`
-2. Deploy `dist` folder to Netlify
-3. Configure environment variables in Netlify dashboard
-
-### Docker
-
-```dockerfile
-FROM node:18-alpine
-
-WORKDIR /app
-COPY package*.json ./
-RUN npm install
-
-COPY . .
-RUN npm run build
-
-EXPOSE 8080
-CMD ["npm", "run", "preview"]
-```
-
-## 🧪 Testing
-
-### Mock Data Testing
-
-The application includes comprehensive mock data that simulates:
-- Temperature readings (18-35°C range)
-- Humidity readings (30-80% range)
-- Various sensor statuses (online, warning, offline)
-- Realistic timestamps and trends
-
-### Testing Without Backend
-
-```bash
-# Start with mock data (default behavior)
-npm run dev
-
-# The app will automatically use mock data if backend is unavailable
-```
+3. **Add Agriculture Mock Data**: Include field-specific mock data
+4. **Create Sensor Page**: Build agriculture-focused page component
+5. **Update Navigation**: Add route with agriculture icons
+6. **Add Field Information**: Include crop type, soil data, etc.
 
 ## 🐛 Troubleshooting
 
-### Common Issues
+### PWA Issues
 
-**CORS Errors**
-- Ensure FastAPI backend has CORS middleware configured
-- Check that frontend URL is in allowed origins
+**App Not Installing**
+- Ensure HTTPS is enabled
+- Check manifest.json is accessible
+- Verify service worker is registered
+- Test in Chrome DevTools > Application
 
-**Environment Variables Not Loading**
-- Ensure `.env` file is in project root
-- Restart development server after changes
-- Variables must start with `VITE_`
+**Offline Mode Not Working**
+- Check service worker status in DevTools
+- Verify cache strategy in `public/sw.js`
+- Ensure API responses are being cached
 
-**Build Errors**
-- Clear node_modules and reinstall: `rm -rf node_modules package-lock.json && npm install`
-- Check TypeScript errors: `npm run type-check`
-
-**Chart Not Rendering**
-- Check data format matches expected structure
-- Ensure Recharts dependencies are installed
-- Verify responsive container parent element
-
-### Debug Mode
-
-Enable debug logging by setting:
-
-```env
-VITE_DEV_MODE=true
-```
-
-This will:
-- Show additional console logs
-- Display API response details
-- Enable React Query devtools
+**Push Notifications Not Working**
+- Configure Firebase properly
+- Enable notifications in browser
+- Check FCM token generation
+- Verify backend FCM integration
 
 ## 🤝 Contributing
 
 1. Fork the repository
-2. Create feature branch: `git checkout -b feature/amazing-feature`
-3. Commit changes: `git commit -m 'Add amazing feature'`
-4. Push to branch: `git push origin feature/amazing-feature`
+2. Create feature branch: `git checkout -b feature/agriculture-enhancement`
+3. Commit changes: `git commit -m 'Add irrigation alerts'`
+4. Push to branch: `git push origin feature/agriculture-enhancement`
 5. Open a Pull Request
 
-### Code Style
+### Agriculture Development Guidelines
 
-- Use TypeScript for all new code
-- Follow ESLint configuration
-- Use Prettier for code formatting
-- Write meaningful commit messages
-- Add JSDoc comments for complex functions
+- Use agriculture-specific terminology and icons
+- Consider farmer workflows and field conditions
+- Optimize for outdoor mobile usage
+- Include proper units for agricultural measurements
+- Test with various weather and lighting conditions
 
 ## 📄 License
 
@@ -321,19 +400,20 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-- [Recharts](https://recharts.org/) for beautiful charts
-- [Tailwind CSS](https://tailwindcss.com/) for styling system
-- [Radix UI](https://www.radix-ui.com/) for accessibility primitives
-- [Lucide React](https://lucide.dev/) for icons
-- [TanStack Query](https://tanstack.com/query) for server state management
+- [Recharts](https://recharts.org/) for agricultural data visualization
+- [Tailwind CSS](https://tailwindcss.com/) for responsive design system
+- [Radix UI](https://www.radix-ui.com/) for accessible components
+- [Lucide React](https://lucide.dev/) for agriculture-themed icons
+- [TanStack Query](https://tanstack.com/query) for robust data management
 
 ## 📞 Support
 
-For support and questions:
+For agriculture-specific features and farming integration support:
 - Create an issue in the GitHub repository
-- Check existing documentation and README
-- Review the troubleshooting section above
+- Check PWA debugging in browser DevTools
+- Review the agriculture sensor documentation
+- Test with provided mock farm data
 
 ---
 
-**Built with ❤️ using React, TypeScript, and Tailwind CSS**
+**Built with 🌱 for modern agriculture using React, TypeScript, and PWA technologies**

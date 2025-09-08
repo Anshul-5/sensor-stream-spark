@@ -1,7 +1,7 @@
 import { SensorData } from '@/types/sensor';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Activity, AlertTriangle, CheckCircle, Clock, MapPin } from 'lucide-react';
+import { Sprout, AlertTriangle, CheckCircle, Clock, MapPin, Droplets, ThermometerSun, Wheat } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface SensorCardProps {
@@ -16,6 +16,16 @@ const SensorCard = ({ sensor }: SensorCardProps) => {
     if (!sensor.isOnline) return <AlertTriangle className="h-4 w-4 text-destructive" />;
     if (isWarning) return <AlertTriangle className="h-4 w-4 text-warning" />;
     return <CheckCircle className="h-4 w-4 text-success" />;
+  };
+
+  const getSensorTypeIcon = () => {
+    switch (sensor.type) {
+      case 'soil': return <Sprout className="h-5 w-5 text-primary" />;
+      case 'environmental': return <ThermometerSun className="h-5 w-5 text-primary" />;
+      case 'crop': return <Wheat className="h-5 w-5 text-primary" />;
+      case 'irrigation': return <Droplets className="h-5 w-5 text-primary" />;
+      default: return <Sprout className="h-5 w-5 text-primary" />;
+    }
   };
 
   const getStatusColor = () => {
@@ -33,7 +43,7 @@ const SensorCard = ({ sensor }: SensorCardProps) => {
       <CardHeader className="pb-3">
         <div className="flex items-center justify-between">
           <CardTitle className="text-lg font-semibold flex items-center space-x-2">
-            <Activity className="h-5 w-5 text-primary" />
+            {getSensorTypeIcon()}
             <span>{sensor.name}</span>
           </CardTitle>
           <div className="flex items-center space-x-2">
@@ -77,21 +87,41 @@ const SensorCard = ({ sensor }: SensorCardProps) => {
           </div>
         </div>
 
-        {/* Metadata */}
-        <div className="grid grid-cols-2 gap-4 text-sm">
-          {latestReading?.location && (
+        {/* Agriculture Metadata */}
+        <div className="space-y-3">
+          <div className="grid grid-cols-2 gap-4 text-sm">
+            {latestReading?.location && (
+              <div className="flex items-center space-x-2 text-muted-foreground">
+                <MapPin className="h-4 w-4" />
+                <span>{latestReading.location}</span>
+              </div>
+            )}
+            
             <div className="flex items-center space-x-2 text-muted-foreground">
-              <MapPin className="h-4 w-4" />
-              <span>{latestReading.location}</span>
+              <Clock className="h-4 w-4" />
+              <span>
+                {new Date(sensor.lastUpdated).toLocaleTimeString()}
+              </span>
+            </div>
+          </div>
+
+          {/* Agriculture-specific information */}
+          {(latestReading?.fieldSection || latestReading?.cropType || latestReading?.soilType) && (
+            <div className="p-3 rounded-lg bg-success/5 border border-success/20">
+              <div className="text-sm font-medium text-success mb-2">Field Information</div>
+              <div className="grid grid-cols-1 gap-2 text-sm text-muted-foreground">
+                {latestReading?.fieldSection && (
+                  <div>Field Section: <span className="text-foreground">{latestReading.fieldSection}</span></div>
+                )}
+                {latestReading?.cropType && (
+                  <div>Crop Type: <span className="text-foreground">{latestReading.cropType}</span></div>
+                )}
+                {latestReading?.soilType && (
+                  <div>Soil Type: <span className="text-foreground">{latestReading.soilType}</span></div>
+                )}
+              </div>
             </div>
           )}
-          
-          <div className="flex items-center space-x-2 text-muted-foreground">
-            <Clock className="h-4 w-4" />
-            <span>
-              {new Date(sensor.lastUpdated).toLocaleTimeString()}
-            </span>
-          </div>
         </div>
 
         {/* Threshold Information */}
