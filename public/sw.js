@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 // KrishiPragati AI Service Worker - Offline Agriculture Monitoring
 const CACHE_NAME = 'krishipragati-ai-v1.0.0';
 const API_CACHE_NAME = 'krishipragati-ai-api-v1.0.0';
+=======
+// AgriSense Service Worker - Offline Agriculture Monitoring
+const CACHE_NAME = 'agrisense-v1.0.0';
+const API_CACHE_NAME = 'agrisense-api-v1.0.0';
+>>>>>>> 66b4987587b3e545f28b990bb836b61d418d5fec
 
 // Resources to cache for offline functionality
 const STATIC_RESOURCES = [
@@ -19,11 +25,16 @@ const API_ENDPOINTS = [
 
 // Install event - cache static resources
 self.addEventListener('install', (event) => {
+<<<<<<< HEAD
   console.log('[KrishiPragati AI SW] Installing service worker...');
+=======
+  console.log('[AgriSense SW] Installing service worker...');
+>>>>>>> 66b4987587b3e545f28b990bb836b61d418d5fec
   
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then((cache) => {
+<<<<<<< HEAD
         console.log('[KrishiPragati AI SW] Caching static resources');
         return cache.addAll(STATIC_RESOURCES);
       })
@@ -33,13 +44,28 @@ self.addEventListener('install', (event) => {
       })
       .catch((error) => {
         console.error('[KrishiPragati AI SW] Failed to install:', error);
+=======
+        console.log('[AgriSense SW] Caching static resources');
+        return cache.addAll(STATIC_RESOURCES);
+      })
+      .then(() => {
+        console.log('[AgriSense SW] Service worker installed and activated');
+        return self.skipWaiting();
+      })
+      .catch((error) => {
+        console.error('[AgriSense SW] Failed to install:', error);
+>>>>>>> 66b4987587b3e545f28b990bb836b61d418d5fec
       })
   );
 });
 
 // Activate event - clean up old caches
 self.addEventListener('activate', (event) => {
+<<<<<<< HEAD
   console.log('[KrishiPragati AI SW] Activating service worker...');
+=======
+  console.log('[AgriSense SW] Activating service worker...');
+>>>>>>> 66b4987587b3e545f28b990bb836b61d418d5fec
   
   event.waitUntil(
     caches.keys()
@@ -47,14 +73,22 @@ self.addEventListener('activate', (event) => {
         return Promise.all(
           cacheNames.map((cacheName) => {
             if (cacheName !== CACHE_NAME && cacheName !== API_CACHE_NAME) {
+<<<<<<< HEAD
               console.log('[KrishiPragati AI SW] Deleting old cache:', cacheName);
+=======
+              console.log('[AgriSense SW] Deleting old cache:', cacheName);
+>>>>>>> 66b4987587b3e545f28b990bb836b61d418d5fec
               return caches.delete(cacheName);
             }
           })
         );
       })
       .then(() => {
+<<<<<<< HEAD
         console.log('[KrishiPragati AI SW] Service worker activated');
+=======
+        console.log('[AgriSense SW] Service worker activated');
+>>>>>>> 66b4987587b3e545f28b990bb836b61d418d5fec
         return self.clients.claim();
       })
   );
@@ -104,7 +138,11 @@ async function handleApiRequest(request) {
   const cache = await caches.open(API_CACHE_NAME);
   
   try {
+<<<<<<< HEAD
     console.log('[KrishiPragati AI SW] Fetching fresh API data:', request.url);
+=======
+    console.log('[AgriSense SW] Fetching fresh API data:', request.url);
+>>>>>>> 66b4987587b3e545f28b990bb836b61d418d5fec
     
     // Try network first
     const networkResponse = await fetch(request);
@@ -113,7 +151,11 @@ async function handleApiRequest(request) {
       // Cache successful responses
       const responseClone = networkResponse.clone();
       await cache.put(request, responseClone);
+<<<<<<< HEAD
       console.log('[KrishiPragati AI SW] API data cached:', request.url);
+=======
+      console.log('[AgriSense SW] API data cached:', request.url);
+>>>>>>> 66b4987587b3e545f28b990bb836b61d418d5fec
       
       return networkResponse;
     }
@@ -121,17 +163,29 @@ async function handleApiRequest(request) {
     throw new Error(`Network response not ok: ${networkResponse.status}`);
     
   } catch (error) {
+<<<<<<< HEAD
     console.log('[KrishiPragati AI SW] Network failed, checking cache:', error.message);
+=======
+    console.log('[AgriSense SW] Network failed, checking cache:', error.message);
+>>>>>>> 66b4987587b3e545f28b990bb836b61d418d5fec
     
     // Fallback to cache
     const cachedResponse = await cache.match(request);
     
     if (cachedResponse) {
+<<<<<<< HEAD
       console.log('[KrishiPragati AI SW] Serving cached API data:', request.url);
       
       // Add offline indicator header
       const headers = new Headers(cachedResponse.headers);
       headers.set('X-Served-By', 'KrishiPragati-AI-SW-Cache');
+=======
+      console.log('[AgriSense SW] Serving cached API data:', request.url);
+      
+      // Add offline indicator header
+      const headers = new Headers(cachedResponse.headers);
+      headers.set('X-Served-By', 'AgriSense-SW-Cache');
+>>>>>>> 66b4987587b3e545f28b990bb836b61d418d5fec
       headers.set('X-Cache-Date', new Date().toISOString());
       
       return new Response(cachedResponse.body, {
@@ -142,7 +196,11 @@ async function handleApiRequest(request) {
     }
     
     // Return mock agricultural data if no cache available
+<<<<<<< HEAD
     console.log('[KrishiPragati AI SW] No cache available, serving mock data');
+=======
+    console.log('[AgriSense SW] No cache available, serving mock data');
+>>>>>>> 66b4987587b3e545f28b990bb836b61d418d5fec
     return createMockResponse(request);
   }
 }
@@ -153,7 +211,11 @@ async function handleStaticResource(request) {
   const cachedResponse = await cache.match(request);
   
   if (cachedResponse) {
+<<<<<<< HEAD
     console.log('[KrishiPragati AI SW] Serving cached resource:', request.url);
+=======
+    console.log('[AgriSense SW] Serving cached resource:', request.url);
+>>>>>>> 66b4987587b3e545f28b990bb836b61d418d5fec
     return cachedResponse;
   }
   
@@ -164,7 +226,11 @@ async function handleStaticResource(request) {
     }
     return networkResponse;
   } catch (error) {
+<<<<<<< HEAD
     console.log('[KrishiPragati AI SW] Failed to fetch resource:', request.url);
+=======
+    console.log('[AgriSense SW] Failed to fetch resource:', request.url);
+>>>>>>> 66b4987587b3e545f28b990bb836b61d418d5fec
     // Return offline page or placeholder if available
     return new Response('Resource not available offline', { status: 503 });
   }
@@ -178,10 +244,17 @@ async function handleNavigation(request) {
     const networkResponse = await fetch(request);
     return networkResponse;
   } catch (error) {
+<<<<<<< HEAD
     console.log('[KrishiPragati AI SW] Navigation failed, serving cached version');
     
     const cachedResponse = await cache.match('/');
     return cachedResponse || new Response('Offline mode - KrishiPragati AI', {
+=======
+    console.log('[AgriSense SW] Navigation failed, serving cached version');
+    
+    const cachedResponse = await cache.match('/');
+    return cachedResponse || new Response('Offline mode - AgriSense', {
+>>>>>>> 66b4987587b3e545f28b990bb836b61d418d5fec
       status: 200,
       headers: { 'Content-Type': 'text/html' }
     });
@@ -235,7 +308,11 @@ function createMockResponse(request) {
     status: 200,
     headers: {
       'Content-Type': 'application/json',
+<<<<<<< HEAD
       'X-Served-By': 'KrishiPragati-AI-SW-Mock',
+=======
+      'X-Served-By': 'AgriSense-SW-Mock',
+>>>>>>> 66b4987587b3e545f28b990bb836b61d418d5fec
       'X-Cache-Date': new Date().toISOString()
     }
   });
@@ -267,15 +344,24 @@ function generateMockReadings(type, unit, baseValue, range) {
 
 // Background sync for when connection is restored
 self.addEventListener('sync', (event) => {
+<<<<<<< HEAD
   if (event.tag === 'krishipragati-ai-sync') {
     console.log('[KrishiPragati AI SW] Background sync triggered');
+=======
+  if (event.tag === 'agrisense-sync') {
+    console.log('[AgriSense SW] Background sync triggered');
+>>>>>>> 66b4987587b3e545f28b990bb836b61d418d5fec
     event.waitUntil(syncSensorData());
   }
 });
 
 // Sync sensor data when connection is restored
 async function syncSensorData() {
+<<<<<<< HEAD
   console.log('[KrishiPragati AI SW] Syncing sensor data...');
+=======
+  console.log('[AgriSense SW] Syncing sensor data...');
+>>>>>>> 66b4987587b3e545f28b990bb836b61d418d5fec
   try {
     // Clear old API cache and fetch fresh data
     await caches.delete(API_CACHE_NAME);
@@ -289,13 +375,21 @@ async function syncSensorData() {
       });
     });
   } catch (error) {
+<<<<<<< HEAD
     console.error('[KrishiPragati AI SW] Sync failed:', error);
+=======
+    console.error('[AgriSense SW] Sync failed:', error);
+>>>>>>> 66b4987587b3e545f28b990bb836b61d418d5fec
   }
 }
 
 // Push notification handling (for future FCM integration)
 self.addEventListener('push', (event) => {
+<<<<<<< HEAD
   console.log('[KrishiPragati AI SW] Push notification received');
+=======
+  console.log('[AgriSense SW] Push notification received');
+>>>>>>> 66b4987587b3e545f28b990bb836b61d418d5fec
   
   if (event.data) {
     const data = event.data.json();
@@ -303,7 +397,11 @@ self.addEventListener('push', (event) => {
       body: data.body || 'Agricultural monitoring alert',
       icon: '/icons/icon-192x192.png',
       badge: '/icons/icon-72x72.png',
+<<<<<<< HEAD
       tag: 'krishipragati-ai-alert',
+=======
+      tag: 'agrisense-alert',
+>>>>>>> 66b4987587b3e545f28b990bb836b61d418d5fec
       data: data,
       actions: [
         {
@@ -318,9 +416,17 @@ self.addEventListener('push', (event) => {
     };
     
     event.waitUntil(
+<<<<<<< HEAD
       self.registration.showNotification(data.title || 'KrishiPragati AI Alert', options)
+=======
+      self.registration.showNotification(data.title || 'AgriSense Alert', options)
+>>>>>>> 66b4987587b3e545f28b990bb836b61d418d5fec
     );
   }
 });
 
+<<<<<<< HEAD
 console.log('[KrishiPragati AI SW] Service worker script loaded successfully');
+=======
+console.log('[AgriSense SW] Service worker script loaded successfully');
+>>>>>>> 66b4987587b3e545f28b990bb836b61d418d5fec

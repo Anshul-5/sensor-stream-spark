@@ -1,8 +1,16 @@
+<<<<<<< HEAD
 # 🌱 KrishiPragati AI - Smart Agriculture Monitoring PWA
 
 A **Progressive Web App (PWA)** built with **React.js** and **Tailwind CSS** for real-time agricultural field monitoring. Track soil conditions, crop health, and environmental parameters to make data-driven farming decisions.
 
 ![KrishiPragati AI Dashboard](https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&h=400&fit=crop)
+=======
+# 🌱 AgriSense - Smart Agriculture Monitoring PWA
+
+A **Progressive Web App (PWA)** built with **React.js** and **Tailwind CSS** for real-time agricultural field monitoring. Track soil conditions, crop health, and environmental parameters to make data-driven farming decisions.
+
+![AgriSense Dashboard](https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&h=400&fit=crop)
+>>>>>>> 66b4987587b3e545f28b990bb836b61d418d5fec
 
 ## ✨ Features
 
@@ -66,7 +74,11 @@ Includes comprehensive mock agriculture data for development:
 1. **Clone and Install**
    ```bash
    git clone <repository-url>
+<<<<<<< HEAD
    cd krishipragati-ai-frontend
+=======
+   cd agrisense-frontend
+>>>>>>> 66b4987587b3e545f28b990bb836b61d418d5fec
    npm install
    ```
 
@@ -109,7 +121,11 @@ VITE_FIREBASE_MESSAGING_SENDER_ID=your-sender-id
 VITE_FIREBASE_APP_ID=your-app-id
 
 # App Configuration
+<<<<<<< HEAD
 VITE_APP_NAME=KrishiPragati AI
+=======
+VITE_APP_NAME=AgriSense
+>>>>>>> 66b4987587b3e545f28b990bb836b61d418d5fec
 VITE_APP_VERSION=1.0.0
 ```
 
@@ -323,7 +339,11 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app.add_middleware(
     CORSMiddleware,
+<<<<<<< HEAD
     allow_origins=["https://your-krishipragati-ai-app.vercel.app"],
+=======
+    allow_origins=["https://your-agrisense-app.vercel.app"],
+>>>>>>> 66b4987587b3e545f28b990bb836b61d418d5fec
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
