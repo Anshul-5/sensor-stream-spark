@@ -2,11 +2,7 @@
 // This is a placeholder implementation for future FCM integration
 
 /**
-<<<<<<< HEAD
  * KrishiPragati AI FCM Integration Guide
-=======
- * AgriSense FCM Integration Guide
->>>>>>> 66b4987587b3e545f28b990bb836b61d418d5fec
  * 
  * To enable push notifications for agricultural alerts:
  * 
@@ -72,13 +68,8 @@ const FCM_CONFIG: Partial<FCMConfig> = {
  * import { getMessaging, getToken, onMessage } from 'firebase/messaging';
  */
 export const initializeFCM = async (): Promise<string | null> => {
-<<<<<<< HEAD
   console.log('[KrishiPragati AI FCM] FCM initialization placeholder');
   console.log('[KrishiPragati AI FCM] To enable FCM, follow the integration guide in src/utils/fcm.ts');
-=======
-  console.log('[AgriSense FCM] FCM initialization placeholder');
-  console.log('[AgriSense FCM] To enable FCM, follow the integration guide in src/utils/fcm.ts');
->>>>>>> 66b4987587b3e545f28b990bb836b61d418d5fec
   
   // TODO: Implement when Firebase is configured
   /*
@@ -90,17 +81,10 @@ export const initializeFCM = async (): Promise<string | null> => {
       vapidKey: FCM_CONFIG.vapidKey
     });
     
-<<<<<<< HEAD
     console.log('[KrishiPragati AI FCM] Registration token:', token);
     return token;
   } catch (error) {
     console.error('[KrishiPragati AI FCM] Failed to initialize:', error);
-=======
-    console.log('[AgriSense FCM] Registration token:', token);
-    return token;
-  } catch (error) {
-    console.error('[AgriSense FCM] Failed to initialize:', error);
->>>>>>> 66b4987587b3e545f28b990bb836b61d418d5fec
     return null;
   }
   */
@@ -112,11 +96,7 @@ export const initializeFCM = async (): Promise<string | null> => {
  * Request notification permission and get FCM token
  */
 export const requestFCMPermission = async (): Promise<string | null> => {
-<<<<<<< HEAD
   console.log('[KrishiPragati AI FCM] FCM permission request placeholder');
-=======
-  console.log('[AgriSense FCM] FCM permission request placeholder');
->>>>>>> 66b4987587b3e545f28b990bb836b61d418d5fec
   
   // TODO: Implement when Firebase is configured
   /*
@@ -124,7 +104,6 @@ export const requestFCMPermission = async (): Promise<string | null> => {
     const permission = await Notification.requestPermission();
     
     if (permission === 'granted') {
-<<<<<<< HEAD
       console.log('[KrishiPragati AI FCM] Notification permission granted');
       return await initializeFCM();
     } else {
@@ -133,16 +112,6 @@ export const requestFCMPermission = async (): Promise<string | null> => {
     }
   } catch (error) {
     console.error('[KrishiPragati AI FCM] Permission request failed:', error);
-=======
-      console.log('[AgriSense FCM] Notification permission granted');
-      return await initializeFCM();
-    } else {
-      console.log('[AgriSense FCM] Notification permission denied');
-      return null;
-    }
-  } catch (error) {
-    console.error('[AgriSense FCM] Permission request failed:', error);
->>>>>>> 66b4987587b3e545f28b990bb836b61d418d5fec
     return null;
   }
   */
@@ -154,30 +123,18 @@ export const requestFCMPermission = async (): Promise<string | null> => {
  * Handle incoming FCM messages
  */
 export const setupFCMMessageListener = (callback: (notification: AgricultureNotification) => void) => {
-<<<<<<< HEAD
   console.log('[KrishiPragati AI FCM] Message listener setup placeholder');
-=======
-  console.log('[AgriSense FCM] Message listener setup placeholder');
->>>>>>> 66b4987587b3e545f28b990bb836b61d418d5fec
   
   // TODO: Implement when Firebase is configured
   /*
   const messaging = getMessaging();
   
   onMessage(messaging, (payload) => {
-<<<<<<< HEAD
     console.log('[KrishiPragati AI FCM] Message received:', payload);
     
     const notification: AgricultureNotification = {
       type: payload.data?.type as any || 'irrigation_reminder',
       title: payload.notification?.title || 'KrishiPragati AI Alert',
-=======
-    console.log('[AgriSense FCM] Message received:', payload);
-    
-    const notification: AgricultureNotification = {
-      type: payload.data?.type as any || 'irrigation_reminder',
-      title: payload.notification?.title || 'AgriSense Alert',
->>>>>>> 66b4987587b3e545f28b990bb836b61d418d5fec
       body: payload.notification?.body || 'Check your field conditions',
       fieldId: payload.data?.fieldId,
       sensorId: payload.data?.sensorId,
@@ -195,11 +152,7 @@ export const setupFCMMessageListener = (callback: (notification: AgricultureNoti
  * Send FCM token to your backend
  */
 export const sendTokenToServer = async (token: string): Promise<boolean> => {
-<<<<<<< HEAD
   console.log('[KrishiPragati AI FCM] Token registration placeholder');
-=======
-  console.log('[AgriSense FCM] Token registration placeholder');
->>>>>>> 66b4987587b3e545f28b990bb836b61d418d5fec
   
   // TODO: Implement API call to your FastAPI backend
   /*
@@ -220,7 +173,6 @@ export const sendTokenToServer = async (token: string): Promise<boolean> => {
     });
     
     if (response.ok) {
-<<<<<<< HEAD
       console.log('[KrishiPragati AI FCM] Token registered successfully');
       return true;
     } else {
@@ -229,16 +181,6 @@ export const sendTokenToServer = async (token: string): Promise<boolean> => {
     }
   } catch (error) {
     console.error('[KrishiPragati AI FCM] Token registration error:', error);
-=======
-      console.log('[AgriSense FCM] Token registered successfully');
-      return true;
-    } else {
-      console.error('[AgriSense FCM] Token registration failed');
-      return false;
-    }
-  } catch (error) {
-    console.error('[AgriSense FCM] Token registration error:', error);
->>>>>>> 66b4987587b3e545f28b990bb836b61d418d5fec
     return false;
   }
   */

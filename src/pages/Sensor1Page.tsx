@@ -6,10 +6,7 @@ import SensorCard from '@/components/sensors/SensorCard';
 import SensorChart from '@/components/sensors/SensorChart';
 import { AlertCircle, Activity, Droplets, Clock, Wheat, Sprout } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-<<<<<<< HEAD
 import { cn } from '@/lib/utils';
-=======
->>>>>>> 66b4987587b3e545f28b990bb836b61d418d5fec
 
 const Sensor1Page = () => {
   const { 
@@ -215,20 +212,12 @@ const Sensor1Page = () => {
                     <td className="py-2">
                       <Badge 
                         variant="outline" 
-<<<<<<< HEAD
                         className={cn(
                           "capitalize font-bold text-xs px-2 py-1",
                           reading.status === 'online' && "border-success text-green-800 bg-success/15",
                           reading.status === 'warning' && "border-warning text-amber-800 bg-warning/15",
                           reading.status === 'offline' && "border-destructive text-red-800 bg-destructive/15"
                         )}
-=======
-                        className={`capitalize ${
-                          reading.status === 'online' ? 'border-success text-success-foreground' :
-                          reading.status === 'warning' ? 'border-warning text-warning-foreground' :
-                          'border-destructive text-destructive-foreground'
-                        }`}
->>>>>>> 66b4987587b3e545f28b990bb836b61d418d5fec
                       >
                         {reading.status}
                       </Badge>

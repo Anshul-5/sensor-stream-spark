@@ -33,11 +33,7 @@ const Navigation = ({ onRefresh, isRefreshing }: NavigationProps) => {
               <Sprout className="h-4 w-4 text-primary-foreground" />
             </div>
             <span className="text-xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-<<<<<<< HEAD
               KrishiPragati AI
-=======
-              AgriSense
->>>>>>> 66b4987587b3e545f28b990bb836b61d418d5fec
             </span>
           </Link>
           

@@ -1,11 +1,6 @@
 {
-<<<<<<< HEAD
   "name": "KrishiPragati AI - Smart Agriculture Monitoring",
   "short_name": "KrishiPragati AI",
-=======
-  "name": "AgriSense - Smart Agriculture Monitoring",
-  "short_name": "AgriSense",
->>>>>>> 66b4987587b3e545f28b990bb836b61d418d5fec
   "description": "Real-time field monitoring dashboard for farmers and agronomists. Monitor soil moisture, temperature, humidity, and crop health with offline capabilities.",
   "start_url": "/",
   "display": "standalone",
@@ -71,22 +66,14 @@
       "sizes": "1280x720",
       "type": "image/png",
       "form_factor": "wide",
-<<<<<<< HEAD
       "label": "KrishiPragati AI Dashboard on Desktop"
-=======
-      "label": "AgriSense Dashboard on Desktop"
->>>>>>> 66b4987587b3e545f28b990bb836b61d418d5fec
     },
     {
       "src": "/screenshots/mobile.png",
       "sizes": "390x844",
       "type": "image/png",
       "form_factor": "narrow",
-<<<<<<< HEAD
       "label": "KrishiPragati AI Dashboard on Mobile"
-=======
-      "label": "AgriSense Dashboard on Mobile"
->>>>>>> 66b4987587b3e545f28b990bb836b61d418d5fec
     }
   ],
   "shortcuts": [

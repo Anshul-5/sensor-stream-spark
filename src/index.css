@@ -2,11 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-<<<<<<< HEAD
 /* KrishiPragati AI - Agriculture IoT Dashboard Design System */
-=======
-/* AgriSense - Agriculture IoT Dashboard Design System */
->>>>>>> 66b4987587b3e545f28b990bb836b61d418d5fec
 
 @layer base {
   :root {
@@ -37,15 +33,9 @@
     --secondary-glow: 32 95% 44%;
 
     /* Accent Colors - Sunny Yellow */
-<<<<<<< HEAD
     --accent: 48 96% 60%;
     --accent-foreground: 20 14% 11%;
     --accent-glow: 54 91% 35%;
-=======
-    --accent: 48 96% 89%;
-    --accent-foreground: 20 14% 11%;
-    --accent-glow: 54 91% 25%;
->>>>>>> 66b4987587b3e545f28b990bb836b61d418d5fec
 
     /* Agricultural Status Colors */
     --success: 142 76% 36%;
@@ -53,11 +43,7 @@
     --warning: 43 96% 56%;
     --warning-foreground: 20 14% 11%;
     --destructive: 0 84% 60%;
-<<<<<<< HEAD
     --destructive-foreground: 0 84% 40%;
-=======
-    --destructive-foreground: 60 9% 98%;
->>>>>>> 66b4987587b3e545f28b990bb836b61d418d5fec
 
     /* Water & Sky Colors */
     --water: 212 84% 49%;
@@ -67,13 +53,8 @@
 
     /* Muted & Neutral Colors - Natural Grays */
     --muted: 60 4% 96%;
-<<<<<<< HEAD
     --muted-foreground: 25 5% 35%;
     --muted-bright: 20 6% 25%;
-=======
-    --muted-foreground: 25 5% 45%;
-    --muted-bright: 20 6% 90%;
->>>>>>> 66b4987587b3e545f28b990bb836b61d418d5fec
 
     /* Border & Input Colors */
     --border: 60 9% 91%;
@@ -102,7 +83,6 @@
 
   }
 
-<<<<<<< HEAD
   /* Custom Chart Animations */
   @keyframes slideInUp {
     from {
@@ -147,8 +127,6 @@
     animation: pulse-glow 2s infinite;
   }
 
-=======
->>>>>>> 66b4987587b3e545f28b990bb836b61d418d5fec
   .dark {
     /* Dark mode for field monitoring at night */
     --background: 20 14% 11%;
